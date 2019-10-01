@@ -6,13 +6,20 @@
 Migrating Compute Engine instances to a different region is pretty easy.
 
 Navigate to the [Disks section](https://console.cloud.google.com/compute/disks)
-of the Compute Engine console.  
-![Compute Engine Disks](disks.png)  
-Select the disk tied to the service to migrate and select **Create Snapshot**.  
-![Disk details](create-snapshot.png)  
-Give the snapshot a name. The default options are reasonable.  
-![Snapshot Options](snapshot-details.png)  
-The snapshot should now appear in the snapshot listing.  
+of the Compute Engine console.
+
+![Compute Engine Disks](disks.png)
+
+Select the disk tied to the service to migrate and select **Create Snapshot**.
+
+![Disk details](create-snapshot.png)
+
+Give the snapshot a name. The default options are reasonable.
+
+![Snapshot Options](snapshot-details.png)
+
+The snapshot should now appear in the snapshot listing.
+
 ![List of snapshots](snapshot-list.png)
 
 Now to create the VM instance in the new region. Go back to the [VM
@@ -20,16 +27,22 @@ Instances](https://console.cloud.google.com/compute/instances) view and open the
 form to create a new instance.
 
 After giving the instance a name and the desired region, click **Change** under
-**Boot Disk**.  
-![Boot Disk](boot-disk.png)  
-Go to the **Snapshots** tab and select the snapshot made earlier.  
-![Selected snapshot](selected-snapshot.png)  
-Finish making the VM instance and it should appear in the instance list.  
+**Boot Disk**.
+
+![Boot Disk](boot-disk.png)
+
+Go to the **Snapshots** tab and select the snapshot made earlier.
+
+![Selected snapshot](selected-snapshot.png)
+
+Finish making the VM instance and it should appear in the instance list.
+
 ![VM Instance List](instance-list.png)
 
 If the VM instance being migrated needs commands to be run or services started
 after a reboot, SSH into the new instance and perform those tasks. Starting a
-new VM instance from a snapshot is just like a very complicated reboot.  
+new VM instance from a snapshot is just like a very complicated reboot.
+
 ![SSH Session](ssh.png)
 
 But that's it. And if the VM instance has boot tasks configured to bring the
@@ -43,12 +56,14 @@ manually moving to a new region requires a separate project and a separate appli
 
 After creating a new project, navigate to the [App
 Engine](https://console.cloud.google.com/appengine/) view and create a new
-project in the desired region. Choose wisely, because it can't be changed later.  
+project in the desired region. Choose wisely, because it can't be changed later.
+
 ![App Engine region choice](app-engine-region.png)
 
 Ideally the application code would be hosted in some external repository that
 can be quickly cloned and deployed into the new GCP project. Then all that is
-required is cloning the application code and running `gcloud app deploy`.  
+required is cloning the application code and running `gcloud app deploy`.
+
 ![App Engine deployment process](app-engine-console.png)
 
 ## Timing Results
