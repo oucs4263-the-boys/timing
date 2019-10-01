@@ -46,13 +46,15 @@ new VM instance from a snapshot is just like a very complicated reboot.
 ![SSH Session](ssh.png)
 
 But that's it. And if the VM instance has boot tasks configured to bring the
-service up automatically, the only two steps in the migration process are to
-make a snapshot and make a new instance from that snapshot.
+service up automatically (this is the case with our Python VM), the only two
+steps in the migration process are to make a snapshot and make a new instance
+from that snapshot.
 
 ### App Engine
 Google Cloud Platform doesn't support moving App Engine instances or snapshots.
 App Engine is automatically scaled across multiple regions by Google, so
-manually moving to a new region requires a separate project and a separate application.
+manually moving to a new region requires a separate project and a separate
+application.
 
 After creating a new project, navigate to the [App
 Engine](https://console.cloud.google.com/appengine/) view and create a new
@@ -65,6 +67,18 @@ can be quickly cloned and deployed into the new GCP project. Then all that is
 required is cloning the application code and running `gcloud app deploy`.
 
 ![App Engine deployment process](app-engine-console.png)
+
+In our case, all we needed for the Python-based App Engine service was the
+following:
+```sh
+git clone https://github.com/oucs4263-the-boys/python-docs-samples
+cd python-docs-samples/appengine/standard_python37/hello_world
+gcloud app deploy
+```
+
+The Java-based service would need to be redone following our [original
+deployment
+instructions](https://github.com/oucs4263-the-boys/random-number/tree/master/app-engine-java).
 
 ## Timing Results
 ```
